@@ -34,8 +34,6 @@ class CountryController extends Controller
         $searchModel = new CountrySearch();
         $dataProvider = $searchModel->searchDuplicado($this->request->queryParams);
 
-        
-
         return $this->render('duplicados', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
