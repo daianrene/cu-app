@@ -69,7 +69,7 @@ class CountrySearch extends Country
 
     public function searchDuplicado($params)
     {
-        //$query = Country::find();
+        $query = Country::find();
 
         // $query = Country::find()
         //     -> where(['code' => 
@@ -81,12 +81,11 @@ class CountrySearch extends Country
                     //        GROUP BY name
                     //       HAVING COUNT(*)>1)
                      
-            $query = Country::find()
-            -> where(['name' => 
-                Country::find()->select('name')->groupBy('name')->having(['>','count(*)','1'])]);
+            // $query = Country::find()
+            // -> where(['name' => 
+            //     Country::find()->select('name')->groupBy('name')->having(['>','count(*)','1'])]);
 
                     
-            //find()->where(['cu' => Caso::find()->select('cu')->groupBy('cu')->having(['>', 'count(*)','1'])])
 
         // add conditions that should always apply here
 

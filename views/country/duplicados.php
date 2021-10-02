@@ -14,8 +14,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
+    <?php
+        echo '<script>';
+        echo "console.log('" . json_encode($posts) . "')";
+        echo '</script>';
+        ?>
+
+    <?php foreach ($posts as $country): ?>
+        <li>
+         <?= $country?>
+        </li>
+        
+    <?php endforeach; ?>
+
    
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -29,6 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         ],
     ]); ?>
+
 
 
 </div>
