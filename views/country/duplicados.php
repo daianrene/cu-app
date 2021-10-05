@@ -11,23 +11,9 @@ $this->title = 'Duplicados';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="country-index">
+ 
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <?php
-        echo '<script>';
-        echo "console.log('" . json_encode($posts) . "')";
-        echo '</script>';
-        ?>
-
-    <?php foreach ($posts as $country): ?>
-        <li>
-         <?= $country?>
-        </li>
-        
-    <?php endforeach; ?>
-
-   
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -35,9 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'code',
+            //'code',
             'name',
-            'population',
+            'prueba',
+            //'population',
 
         ],
     ]); ?>

@@ -17,7 +17,7 @@ class CountrySearch extends Country
     public function rules()
     {
         return [
-            [['code', 'name'], 'safe'],
+            [['code', 'name','prueba'], 'safe'],
             [['population'], 'integer'],
         ];
     }
@@ -69,25 +69,9 @@ class CountrySearch extends Country
 
     public function searchDuplicado($params)
     {
-        $query = Country::find();
-
-        // $query = Country::find()
-        //     -> where(['code' => 
-        //         Country::find()->select('code')->where(['>', 'population' , '35985751'])
-        //             ]);
-
-                    // select * from country where name in 
-                    //   ( SELECT name FROM country 
-                    //        GROUP BY name
-                    //       HAVING COUNT(*)>1)
-                     
-            // $query = Country::find()
-            // -> where(['name' => 
-            //     Country::find()->select('name')->groupBy('name')->having(['>','count(*)','1'])]);
-
-                    
-
-        // add conditions that should always apply here
+        $query = Country::find()->select(["name", "GROUP_CONCAT(code, ' ',population separator ' - ') as 'prueba'",])
+                    ->groupBy('name');
+            
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -106,7 +90,7 @@ class CountrySearch extends Country
             'population' => $this->population,
         ]);
 
-        $query->andFilterWhere(['like', 'code', $this->code])
+        $query->andFilterWhere(['like', 'code', $this->code])->andFilterWhere(['like', 'prueba', $this->prueba])
             ->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;

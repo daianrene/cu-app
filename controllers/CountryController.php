@@ -2,6 +2,9 @@
 
 namespace app\controllers;
 
+
+use yii\base\Model;
+use yii\data\ActiveDataProvider;
 use app\models\Country;
 use app\models\CountrySearch;
 use yii\web\Controller;
@@ -34,29 +37,10 @@ class CountryController extends Controller
         $searchModel = new CountrySearch();
         $dataProvider = $searchModel->searchDuplicado($this->request->queryParams);
 
-        $posts = $dataProvider->getModels();
 
-        $prueba = [];
-
-        foreach ($posts as $cu): 
-
-            if (array_key_exists($cu->name, $prueba)) {
-
-                $ant = $prueba[$cu->name] ;
-                $prueba[$cu->name] =  $cu->code . ', ' . $ant;
-
-            }else{
-
-                $prueba[$cu->name] =  $cu->code;
-
-            }
-        endforeach; 
-
-       
         return $this->render('duplicados', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'posts' => $prueba,
         ]);
     }
     /**

@@ -10,12 +10,15 @@ use Yii;
  * @property string $code
  * @property string $name
  * @property int $population
+ * @property string $prueba
  */
 class Country extends \yii\db\ActiveRecord
 {
+    public $prueba;
     /**
      * {@inheritdoc}
      */
+
     public static function tableName()
     {
         return 'country';
